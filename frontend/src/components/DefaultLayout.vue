@@ -135,7 +135,7 @@
         </div>
       </DisclosurePanel>
     </Disclosure>
-
+    <!-- children placed here -->
     <RouterView />
   </div>
 </template>
