@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useSurveyStore = defineStore('survey', () => {
   let user = ref({
-    name: 'Ian',
+    data: {},
     token: null
   })
 
