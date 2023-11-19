@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/LoginView.vue'
-import Dashboard from '../views/DashboardView.vue'
 
-const DefaultLayout = () => import('../components/DefaultLayout.vue')
-const Register = () => import('../views/RegisterView.vue')
+import DefaultLayout from '../components/DefaultLayout.vue'
+import Dashboard from '../views/DashboardView.vue'
 const Surveys = () => import('../views/SurveyView.vue')
+
+import AuthLayout from '../components/AuthLayout.vue'
+import Login from '../views/LoginView.vue'
+const Register = () => import('../views/RegisterView.vue')
 
 import { useSurveyStore } from '../stores/surveyStore'
 
@@ -20,14 +22,23 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
+    path: '/auth',
+    redirect: 'login',
+    name: 'Auth',
+    component: AuthLayout,
+    meta: { isGuest: true },
+    children: [
+      {
+        path: '/login',
+        name: 'Login',
+        component: Login
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: Register
+      }
+    ]
   }
 ]
 
