@@ -3,9 +3,18 @@ import { defineStore } from 'pinia'
 
 export const useSurveyStore = defineStore('survey', () => {
   let user = ref({
-    data: {},
-    token: null
+    data: {
+      name: 'Tom Cook',
+      email: 'tom@example.com',
+      imageUrl: '/src/assets/profilef.jpg'
+    },
+    token: 123
   })
 
-  return { user }
+  const logout = () => {
+    user.value.data = {}
+    user.value.token = null
+  }
+
+  return { user, logout }
 })

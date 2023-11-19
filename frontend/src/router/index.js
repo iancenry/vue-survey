@@ -54,8 +54,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.user.token) {
     //redirect user
     next({ name: 'Login' })
-  } else if (store.user.token && (to.name === 'Login' || to.name === 'Register')) {
-    // if user authorized and tries to access Login/Register redirect to dashboard
+  } else if (store.user.token && to.meta.isGuest) {
+    // if user authorized and tries to access a guest route(login/dashbaord) redirect to dashboard
     next({ name: 'Dashboard' })
   } else {
     // let user go to page they were trying to access
